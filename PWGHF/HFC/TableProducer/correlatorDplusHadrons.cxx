@@ -65,7 +65,7 @@ const double ptDAxisMax = 36.;
   using BinningType = ColumnBinningPolicy<aod::collision::PosZ, aod::mult::MultFV0M<aod::mult::MultFV0A, aod::mult::MultFV0C>>;
   BinningType corrBinning{{zBins, multBins}, true};
   
-   // Code to select a Dmeson in a collision
+  // Code to select a Dmeson in a collision
   struct HfDplusSelection {
   Produces<aod::DmesonSelection> dplusSel;
   Configurable<int> selectionFlagDplus{"selectionFlagDplus", 1, "Selection Flag for Dplus"};

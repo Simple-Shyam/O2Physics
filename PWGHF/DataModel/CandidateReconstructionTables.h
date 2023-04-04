@@ -1290,15 +1290,24 @@ DECLARE_SOA_COLUMN(PtD, ptD, float);
 DECLARE_SOA_COLUMN(PtHadron, ptHadron, float);
 DECLARE_SOA_COLUMN(MD, mD, float);
 DECLARE_SOA_COLUMN(SignalStatus, signalStatus, int);
+DECLARE_SOA_COLUMN(PoolBin, poolBin, int);
 } // namespace hf_correlation_dplus_hadron
 DECLARE_SOA_TABLE(DplusHadronPair, "AOD", "DPLUSHPAIR",
                   aod::hf_correlation_dplus_hadron::DeltaPhi,
                   aod::hf_correlation_dplus_hadron::DeltaEta,
                   aod::hf_correlation_dplus_hadron::PtD,
-                  aod::hf_correlation_dplus_hadron::PtHadron);
+                  aod::hf_correlation_dplus_hadron::PtHadron,
+                  aod::hf_correlation_dplus_hadron::PoolBin);
 DECLARE_SOA_TABLE(DplusHadronRecoInfo, "AOD", "DPLUSHRECOINFO",
                   aod::hf_correlation_dplus_hadron::MD,
                   aod::hf_correlation_dplus_hadron::SignalStatus);
+// Table for selection of Dmeson in a collision
+namespace hf_selection_dmeson_collision
+{
+DECLARE_SOA_COLUMN(DmesonSel, dmesonsel, int);
+} // namespace hf_selection_dmeson_collision
+DECLARE_SOA_TABLE(DmesonSelection, "AOD", "DINCOLL",
+                  aod::hf_selection_dmeson_collision::DmesonSel);
 
 // specific Xicc candidate properties
 namespace hf_cand_xicc

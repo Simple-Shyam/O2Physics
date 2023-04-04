@@ -65,17 +65,17 @@ const double ptDAxisMax = 36.;
   using BinningType = ColumnBinningPolicy<aod::collision::PosZ, aod::mult::MultFV0M<aod::mult::MultFV0A, aod::mult::MultFV0C>>;
   BinningType corrBinning{{zBins, multBins}, true};
   
-   // Code to select a Dmeson in a collision  
+   // Code to select a Dmeson in a collision
   struct HfDplusSelection {
-  Produces<aod::DmesonSelection> dplusSel; 
+  Produces<aod::DmesonSelection> dplusSel;
   Configurable<int> selectionFlagDplus{"selectionFlagDplus", 1, "Selection Flag for Dplus"};
   Configurable<double> yCandMax{"yCandMax", 0.8, "max. cand. rapidity"};
   Configurable<double> ptCandMin{"ptCandMin", 1., "min. cand. pT"};
-    
+  
   Partition<soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi>> selectedDPlusCandidates = aod::hf_sel_candidate_dplus::isSelDplusToPiKPi >= selectionFlagDplus;
-  Partition<soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi, aod::HfCand3ProngMcRec>> recoFlagDPlusCandidates = aod::hf_sel_candidate_dplus::isSelDplusToPiKPi > 0; 
-     
-   void processDplusSelectionData(aod::Collision const& collision, soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi> const& candidates)
+  Partition<soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi, aod::HfCand3ProngMcRec>> recoFlagDPlusCandidates = aod::hf_sel_candidate_dplus::isSelDplusToPiKPi > 0;
+
+    void processDplusSelectionData(aod::Collision const& collision, soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi> const& candidates)
    {
     int isDplusFound = 0;
     if (selectedDPlusCandidates.size() > 0) {
@@ -93,8 +93,8 @@ const double ptDAxisMax = 36.;
     }
     dplusSel(isDplusFound);
     }
-    PROCESS_SWITCH(HfDplusSelection, processDplusSelectionData, "Process Dplus Selection Data", false); 
-    
+    PROCESS_SWITCH(HfDplusSelection, processDplusSelectionData, "Process Dplus Selection Data", false);
+   
    void processDplusSelectionMCRec(aod::Collision const& collision, soa::Join<aod::HfCand3Prong, aod::HfSelDplusToPiKPi, aod::HfCand3ProngMcRec> const& candidates)
    {
     int isDplusFound = 0;
@@ -116,8 +116,8 @@ const double ptDAxisMax = 36.;
     }
     dplusSel(isDplusFound);
     }
-    PROCESS_SWITCH(HfDplusSelection, processDplusSelectionMCRec, "Process Dplus Selection MCRec", false);  
-    
+    PROCESS_SWITCH(HfDplusSelection, processDplusSelectionMCRec, "Process Dplus Selection MCRec", false);
+   
    void processDplusSelectionMCGen(aod::McCollision const& mccollision, aod::McParticles const& particlesMC)
    {
     int isDplusFound = 0;
